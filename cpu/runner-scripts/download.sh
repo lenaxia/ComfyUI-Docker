@@ -24,11 +24,28 @@ echo "########################################"
 
 set +e
 cd /root
+
+# Handle existing ComfyUI directory
+if [ -d "ComfyUI" ]; then
+    rm -rf ComfyUI
+fi
+
+# Create persistent directories
+mkdir -p /root/models /root/custom_nodes /root/input /root/user /root/output
+
+# Clone ComfyUI
 git clone https://github.com/comfyanonymous/ComfyUI.git || git -C "ComfyUI" pull --ff-only
 cd /root/ComfyUI
 # Using stable version (has a release tag)
 git reset --hard "$(git tag | grep -e '^v' | sort -V | tail -1)"
 set -e
+
+# Create symlinks for persistent storage
+ln -sfn /root/models ComfyUI/models
+ln -sfn /root/custom_nodes ComfyUI/custom_nodes
+ln -sfn /root/input ComfyUI/input
+ln -sfn /root/user ComfyUI/user
+ln -sfn /root/output ComfyUI/output
 
 cd /root/ComfyUI/custom_nodes
 clone_or_pull https://github.com/ltdrdata/ComfyUI-Manager.git

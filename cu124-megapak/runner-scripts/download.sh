@@ -24,10 +24,24 @@ echo "########################################"
 echo "[INFO] Downloading ComfyUI & Manager..."
 echo "########################################"
 
+# Create persistent directories
 cd /root
+mkdir -p /root/models /root/custom_nodes /root/input /root/user /root/output
+
+# Handle existing ComfyUI directory
+if [ -d "ComfyUI" ]; then
+    rm -rf ComfyUI
+fi
+
 set +e
-git clone https://github.com/comfyanonymous/ComfyUI.git \
-    || git -C ComfyUI pull --ff-only
+git clone https://github.com/comfyanonymous/ComfyUI.git
+
+# Create symlinks for persistent storage
+ln -sfn /root/models ComfyUI/models
+ln -sfn /root/custom_nodes ComfyUI/custom_nodes
+ln -sfn /root/input ComfyUI/input
+ln -sfn /root/user ComfyUI/user
+ln -sfn /root/output ComfyUI/output
 set -e
 
 cd /root/ComfyUI/custom_nodes

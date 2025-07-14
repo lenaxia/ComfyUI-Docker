@@ -32,8 +32,24 @@ echo "########################################"
 
 # 使用稳定版 ComfyUI（GitHub 上有发布标签）
 set +e
+
+# Create persistent directories
 cd /root
-git clone https://gh-proxy.com/https://github.com/comfyanonymous/ComfyUI.git || git -C ComfyUI pull --ff-only
+mkdir -p /root/models /root/custom_nodes /root/input /root/user /root/output
+
+# Handle existing ComfyUI directory
+if [ -d "ComfyUI" ]; then
+    rm -rf ComfyUI
+fi
+
+git clone https://gh-proxy.com/https://github.com/comfyanonymous/ComfyUI.git
+
+# Create symlinks for persistent storage
+ln -sfn /root/models ComfyUI/models
+ln -sfn /root/custom_nodes ComfyUI/custom_nodes
+ln -sfn /root/input ComfyUI/input
+ln -sfn /root/user ComfyUI/user
+ln -sfn /root/output ComfyUI/output
 cd /root/ComfyUI
 git reset --hard "$(git tag | grep -e '^v' | sort -V | tail -1)"
 set -e

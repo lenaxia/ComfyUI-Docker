@@ -24,6 +24,25 @@ docker run -it --rm \
 
 Once the app is loaded, visit http://localhost:8188/
 
+## Persistent Storage
+
+The container uses a persistent storage structure with symbolic links for key directories:
+
+```
+/root/
+├── models/          # Persistent storage for models
+├── custom_nodes/    # Persistent storage for custom nodes
+├── input/          # Persistent storage for input files
+├── user/           # Persistent storage for user files
+├── output/         # Persistent storage for generated images
+└── ComfyUI/        # ComfyUI installation with symlinks
+```
+
+When using Docker volumes or Kubernetes PVCs, mount your persistent storage to `/root`. The container will automatically:
+1. Create the necessary directories if they don't exist
+2. Set up symbolic links from ComfyUI to the persistent storage
+3. Preserve your data across container restarts
+
 ## Image Tags
 
 - `cu121` [\[doc\]](https://github.com/YanWenKun/ComfyUI-Docker/tree/main/cu121)

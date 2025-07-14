@@ -22,6 +22,28 @@ docker run -it --rm \
   yanwk/comfyui-boot:cu124-slim
 ```
 
+## Persistent Storage
+
+The container uses a persistent storage structure with symbolic links for key directories:
+
+```
+/root/
+├── models/          # Persistent storage for models
+├── custom_nodes/    # Persistent storage for custom nodes
+├── input/          # Persistent storage for input files
+├── user/           # Persistent storage for user files
+├── output/         # Persistent storage for generated images
+└── ComfyUI/        # ComfyUI installation with symlinks
+```
+
+When using Docker volumes or Kubernetes PVCs, mount your persistent storage to `/root`.
+The container will automatically:
+
+1. Create the necessary directories if they don't exist
+2. Set up symbolic links from ComfyUI to the persistent storage
+3. Preserve your data across container restarts
+
+
 
 ## Image tags
 
