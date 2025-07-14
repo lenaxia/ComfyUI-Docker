@@ -41,11 +41,11 @@ git reset --hard "$(git tag | grep -e '^v' | sort -V | tail -1)"
 set -e
 
 # Create symlinks for persistent storage
-ln -sfn /root/models ComfyUI/models
-ln -sfn /root/custom_nodes ComfyUI/custom_nodes
-ln -sfn /root/input ComfyUI/input
-ln -sfn /root/user ComfyUI/user
-ln -sfn /root/output ComfyUI/output
+ln -sfn /root/mnt/models /root/ComfyUI/models
+ln -sfn /root/mnt/custom_nodes /root/ComfyUI/custom_nodes
+ln -sfn /root/mnt/input /root/ComfyUI/input
+ln -sfn /root/mnt/user /root/ComfyUI/user
+ln -sfn /root/mnt/output /root/ComfyUI/output
 
 cd /root/ComfyUI/custom_nodes
 clone_or_pull https://github.com/ltdrdata/ComfyUI-Manager.git
