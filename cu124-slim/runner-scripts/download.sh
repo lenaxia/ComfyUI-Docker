@@ -36,16 +36,18 @@ mkdir -p /root/mnt/models /root/mnt/custom_nodes /root/mnt/input /root/mnt/user 
 # Clone ComfyUI
 git clone https://github.com/comfyanonymous/ComfyUI.git || git -C "ComfyUI" pull --ff-only
 cd /root/ComfyUI
-# Using stable version (has a release tag)
 git reset --hard "$(git tag | grep -e '^v' | sort -V | tail -1)"
 set -e
 
+# Remove existing directories before creating symlinks
+rm -rf models custom_nodes input user output
+
 # Create symlinks for persistent storage
-ln -sfn /root/mnt/models /root/ComfyUI/models
-ln -sfn /root/mnt/custom_nodes /root/ComfyUI/custom_nodes
-ln -sfn /root/mnt/input /root/ComfyUI/input
-ln -sfn /root/mnt/user /root/ComfyUI/user
-ln -sfn /root/mnt/output /root/ComfyUI/output
+ln -sfn /root/mnt/models models
+ln -sfn /root/mnt/custom_nodes custom_nodes
+ln -sfn /root/mnt/input input
+ln -sfn /root/mnt/user user
+ln -sfn /root/mnt/output output
 
 cd /root/ComfyUI/custom_nodes
 clone_or_pull https://github.com/ltdrdata/ComfyUI-Manager.git
