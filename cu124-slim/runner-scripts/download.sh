@@ -31,7 +31,7 @@ if [ -d "ComfyUI" ]; then
 fi
 
 # Create persistent directories
-mkdir -p /root/models /root/custom_nodes /root/input /root/user /root/output
+mkdir -p /root/mnt/models /root/mnt/custom_nodes /root/mnt/input /root/mnt/user /root/mnt/output
 
 # Clone ComfyUI
 git clone https://github.com/comfyanonymous/ComfyUI.git || git -C "ComfyUI" pull --ff-only
