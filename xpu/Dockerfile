@@ -5,7 +5,7 @@
 # Using PyTorch built by Intel.
 ################################################################################
 
-FROM intel/intel-extension-for-pytorch:2.7.10-xpu
+FROM intel/intel-extension-for-pytorch:2.8.10-xpu
 
 LABEL maintainer="code@yanwk.fun"
 
