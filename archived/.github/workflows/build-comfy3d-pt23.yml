@@ -44,7 +44,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_ACCESSTOKEN }}
       -
         name: Build and push 'comfy3d-pt23'
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         with:
           context: ./comfy3d-pt23
           file: ./comfy3d-pt23/Dockerfile

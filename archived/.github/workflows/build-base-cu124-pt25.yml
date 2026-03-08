@@ -39,7 +39,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_ACCESSTOKEN }}
       -
         name: Build and push 'base-cu124-pt25'
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         with:
           context: ./base-cu124-pt25
           file: ./base-cu124-pt25/Dockerfile
