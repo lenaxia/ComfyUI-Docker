@@ -46,7 +46,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_ACCESSTOKEN }}
       -
         name: Build and push 'cu126-slim'
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         with:
           context: ./cu126-slim
           file: ./cu126-slim/Dockerfile

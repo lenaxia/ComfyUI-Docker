@@ -46,7 +46,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_ACCESSTOKEN }}
       -
         name: Build and push 'cu124-megapak'
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         with:
           context: ./cu124-megapak
           file: ./cu124-megapak/Dockerfile
