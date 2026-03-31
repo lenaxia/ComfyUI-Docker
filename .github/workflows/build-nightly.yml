@@ -20,7 +20,7 @@ jobs:
       -
         name: Get current commit hash
         id: commit
-        uses: prompt/actions-commit-hash@v3
+        uses: prompt/actions-commit-hash@v4
       -
         name: Get current date
         id: date
